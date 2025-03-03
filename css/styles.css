@@ -1,0 +1,512 @@
+/* Reset global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* NAVBAR */
+/* ==================== HEADER GLOBAL ==================== */
+.site-header {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 3px solid #003366;
+}
+
+.site-branding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.site-logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: 8px;
+}
+
+.site-title {
+    font-size: 2rem;
+    color: #003366;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+/* ==================== NAVIGATION ==================== */
+.main-nav {
+    background-color: #003366;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    display: block;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.95rem;
+    text-decoration: none;
+    padding: 15px 0;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #ffcc00;
+    color: #003366;
+}
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        gap: 0;
+    }
+    .nav-links a {
+        padding: 12px 0;
+    }
+}
+
+
+/* BOUTON SWITCH */
+
+.language-switch {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+.btn-lang {
+    background-color: white;
+    border: 2px solid #003366;
+    color: #003366;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-lang:hover {
+    background-color: #003366;
+    color: white;
+}
+
+
+/* HERO */
+.hero {
+    background-image: url('/assets/brain-hero.jpg'); /* À remplacer */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 120px 20px;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 51, 102, 0.7);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* SECTIONS */
+section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+section h2 {
+    font-size: 2rem;
+    color: #003366;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #ffcc00;
+    display: inline-block;
+}
+
+/* CARDS */
+.cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card {
+    background: #f1f5f9;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    flex: 1 1 calc(33% - 20px);
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card h3 {
+    color: #003366;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    background-color: #e8f1fa;
+}
+
+/* INSTITUT LIST */
+.institut-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.institut-list li {
+    background: #f8f9fa;
+    border-left: 4px solid #003366;
+    padding: 15px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.institut-list strong {
+    color: #003366;
+    font-weight: bold;
+}
+
+.institut-list a {
+    color: #007acc;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.institut-list a:hover {
+    color: #ff6600;
+}
+
+/* SOMMAIRE - En-tête général */
+.sommaire {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 40px 20px;
+    background-color: #f1f5f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sommaire h1 {
+    font-size: 2.5rem;
+    color: #003366;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.sommaire p {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* LISTE DE BLOCS DU SOMMAIRE */
+.sommaire-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Chaque bloc cliquable */
+.sommaire-item {
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(30% - 20px);
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid #003366;
+}
+
+/* Titre de chaque bloc */
+.sommaire-item h3 {
+    color: #003366;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Description courte */
+.sommaire-item p {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Effet au survol */
+.sommaire-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    background-color: #e8f1fa;
+    border-color: #ffcc00;
+}
+
+/* RESPONSIVE - Adaptation mobile */
+@media (max-width: 768px) {
+    .sommaire-item {
+        flex: 1 1 calc(100% - 20px);
+    }
+
+    .sommaire h1 {
+        font-size: 2rem;
+    }
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #003366;
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ff6600;
+}
+
+
+/* FOOTER */
+footer {
+    background: #003366;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9rem;
+    margin-top: 30px;
+}
+
+/* BUTTONS (si besoin) */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #003366;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ff6600;
+}
+
+
+/* ==================== PAGE COURS ==================== */
+
+main.content {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+/* TITRES */
+main h1 {
+    font-size: 2.2rem;
+    color: #003366;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #ffcc00;
+    padding-bottom: 5px;
+}
+
+main h2 {
+    font-size: 1.8rem;
+    color: #005ea5;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #d8d8d8;
+    padding-bottom: 5px;
+}
+
+/* PARAGRAPHES */
+main p {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* LIENS DANS LE TEXTE */
+main a {
+    color: #007acc;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+main a:hover {
+    color: #ff6600;
+}
+
+/* BLOCS EXEMPLE / DÉMONSTRATION */
+.exemple, .demonstration {
+    background-color: #f1f5f9;
+    padding: 15px;
+    border-left: 5px solid #003366;
+    margin: 20px 0;
+    font-style: italic;
+    position: relative;
+}
+
+.exemple::before {
+    content: "Exemple";
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #003366;
+    position: absolute;
+    top: -12px;
+    background-color: #f1f5f9;
+    padding: 2px 8px;
+    font-size: 0.85rem;
+}
+
+.demonstration::before {
+    content: "Démonstration";
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ff6600;
+    position: absolute;
+    top: -12px;
+    background-color: #f1f5f9;
+    padding: 2px 8px;
+    font-size: 0.85rem;
+}
+
+/* DÉFINITION / CONCEPT CLÉ */
+.definition {
+    background-color: #fff8dc;
+    padding: 15px;
+    border: 1px solid #ffcc00;
+    margin: 20px 0;
+    font-weight: bold;
+    color: #665500;
+}
+
+/* FORMULE MATHÉMATIQUE */
+.formule {
+    background-color: #f8f8f8;
+    padding: 15px;
+    border: 1px solid #ccc;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1rem;
+    text-align: center;
+    margin: 15px 0;
+}
+
+/* LISTES */
+main ul, main ol {
+    margin: 15px 0;
+    padding-left: 30px;
+}
+
+main li {
+    margin-bottom: 5px;
+}
+
+/* HIGHLIGHT */
+.highlight {
+    background-color: #ffeb3b;
+    padding: 2px 5px;
+    font-weight: bold;
+}
+
+/* CITATION */
+.citation {
+    font-style: italic;
+    border-left: 4px solid #003366;
+    padding-left: 10px;
+    margin: 15px 0;
+    color: #555;
+}
+
+/* RESPONSIVE POUR MOBILE */
+@media (max-width: 768px) {
+    main.content {
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    main h1 {
+        font-size: 1.8rem;
+    }
+
+    main h2 {
+        font-size: 1.5rem;
+    }
+}
