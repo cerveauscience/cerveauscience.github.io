@@ -274,40 +274,45 @@ section h2 {
 
 /* Chaque bloc cliquable */
 .sommaire-item {
-    background: #f9f9f9;
-    padding: 25px;
-    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #f1f5f9;
+    padding: 15px 20px;
+    border-radius: 50px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    flex: 1 1 calc(30% - 20px);
-    text-align: center;
     text-decoration: none;
-    color: inherit;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-top: 4px solid #003366;
-}
-
-/* Titre de chaque bloc */
-.sommaire-item h3 {
     color: #003366;
-    margin-bottom: 8px;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    border: 2px solid #003366;
 }
 
-/* Description courte */
-.sommaire-item p {
-    font-size: 0.95rem;
-    color: #555;
+.sommaire-item img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: white;
 }
 
-/* Effet au survol */
 .sommaire-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
     background-color: #e8f1fa;
-    border-color: #ffcc00;
 }
+
+.sommaire-item h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #003366;
+    text-transform: uppercase;
+    flex: 1;
+    text-align: left;
+}
+
 
 /* RESPONSIVE - Adaptation mobile */
 @media (max-width: 768px) {
@@ -508,5 +513,129 @@ main li {
 
     main h2 {
         font-size: 1.5rem;
+    }
+}
+
+/* ==================== PAGE COURS AVEC SOMMAIRE ==================== */
+
+.container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* SIDEBAR - SOMMAIRE FIXE */
+.sidebar {
+    position: sticky;
+    top: 80px; /* pour laisser la place à la navbar */
+    width: 250px;
+    background-color: #f1f5f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    height: fit-content;
+}
+
+.sidebar h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #003366;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ffcc00;
+    padding-bottom: 5px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 8px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #007acc;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.sidebar a:hover {
+    color: #ff6600;
+}
+
+/* ZONE PRINCIPALE DE CONTENU */
+main.content {
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* TITRES */
+main h1 {
+    font-size: 2.2rem;
+    color: #003366;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #ffcc00;
+    padding-bottom: 5px;
+}
+
+main h2 {
+    font-size: 1.5rem;
+    color: #005ea5;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #d8d8d8;
+    padding-bottom: 5px;
+}
+
+/* PARAGRAPHES */
+main p {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* DEFINITION (mise en valeur) */
+.definition {
+    background-color: #fff8dc;
+    padding: 15px;
+    border: 1px solid #ffcc00;
+    margin: 20px 0;
+    font-weight: bold;
+    color: #665500;
+    border-radius: 5px;
+}
+
+/* LIENS DANS LE TEXTE */
+main a {
+    color: #007acc;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+main a:hover {
+    color: #ff6600;
+}
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        position: static;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    main.content {
+        padding: 15px;
     }
 }
