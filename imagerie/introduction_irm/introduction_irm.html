@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Introduction à l’imagerie par Résonance Magnétique (IRM)</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/loadNavbar.js" defer></script>
+    <script src="../../js/irmQuiz.js"></script>
+</head>
+<body>
+
+<div id="navbar-container"></div>
+
+<div class="container">
+    <aside class="sidebar">
+        <h3>Sommaire IRM</h3>
+        <ul>
+            <li><a href="introduction_irm.html">Introduction à l’IRM</a></li>
+            <li><a href="differentes_images_irm.html">Les différentes images IRM</a></li>
+            <li><a href="principe_acquisition.html">Le principe d'acquisition IRM</a></li>
+            <li><a href="differentes_sequences.html">Les différentes séquences IRM</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <h1>Introduction à l’imagerie par Résonance Magnétique (IRM)</h1>
+
+        <p>L’imagerie par résonance magnétique (IRM) permet d’obtenir des représentations détaillées du cerveau humain, et plus largement de l’ensemble du corps. Il existe plusieurs types d’images IRM, adaptées à différents objectifs cliniques et de recherche.</p>
+
+        <section id="irm-quiz" class="quiz-section">
+            <h2>Saurez-vous deviner cet animal ?</h2>
+            <div class="quiz-container">
+                <img id="irm-image" src="" alt="IRM d'un animal" class="quiz-image">
+        
+                <div class="quiz-choices">
+                    <!-- Injecté par JS -->
+                </div>
+        
+                <div id="quiz-result" class="quiz-result"></div>
+                <div id="quiz-description" class="quiz-description"></div>
+        
+                <button id="next-question" class="btn" style="display:none;">Suivant</button>
+            </div>
+        </section>
+        
+        <script src="../../js/irmQuiz.js"></script>
+        
+
+        <h2>Différents types d’images IRM</h2>
+        <ul>
+            <li><strong>IRM anatomique :</strong> Ces images offrent une visualisation précise de l’anatomie cérébrale, mettant en évidence les différentes structures et couches du cerveau (matière grise, matière blanche, ventricules…). Elles sont particulièrement utiles pour détecter des lésions, des tumeurs ou des anomalies structurelles.</li>
+            <li><strong>IRM fonctionnelle (IRMf) :</strong> Ce type d’imagerie permet de cartographier l’activité cérébrale en mesurant les variations locales du flux sanguin oxygéné (effet BOLD - Blood Oxygen Level Dependent). Elle est essentielle pour étudier les fonctions cognitives, le langage, la mémoire, ou encore les émotions.</li>
+            <li><strong>IRM de diffusion (IRMd ou DTI pour Diffusion Tensor Imaging) :</strong> Cette technique repose sur la mesure de la diffusion de l’eau dans les tissus cérébraux, permettant ainsi de visualiser la microstructure de la matière blanche et de reconstruire les connexions entre les différentes régions du cerveau (faisceaux de substance blanche). C’est un outil clé pour l’étude de la connectivité cérébrale.</li>
+        </ul>
+
+        <h2>Objectifs médicaux et de recherche</h2>
+        <p>L’IRM joue un double rôle, à la fois clinique et scientifique.</p>
+        <ul>
+            <li>En médecine, elle permet aux praticiens de poser des diagnostics précis, de suivre l’évolution de pathologies (AVC, tumeurs, maladies neurodégénératives) et d’évaluer l’efficacité de certains traitements.</li>
+            <li>En recherche neuroscientifique, elle ouvre une fenêtre unique sur le fonctionnement du cerveau sain ou pathologique, permettant d’explorer la cognition, les émotions, ou encore la plasticité cérébrale.</li>
+        </ul>
+
+        <h2>Le déroulement de l’examen</h2>
+        <p>Pour obtenir ces images, le patient est invité à s’allonger à l’intérieur d’un scanner IRM, un appareil en forme de large tube. Il doit rester immobile pendant l’acquisition, qui peut durer de quelques minutes à près d’une heure selon le protocole. Pendant cette période, l’appareil émet une série de bruits mécaniques liés aux gradients magnétiques, nécessitant souvent le port de protections auditives.</p>
+
+        <h2>Une technologie au carrefour de plusieurs disciplines</h2>
+        <p>L’IRM est une technologie véritablement pluridisciplinaire, à la croisée de plusieurs champs scientifiques :</p>
+        <ul>
+            <li><strong>Physique quantique :</strong> Le principe de base repose sur les propriétés quantiques des noyaux d’hydrogène, notamment leur spin nucléaire et leur réponse à un champ magnétique intense.</li>
+            <li><strong>Électromagnétisme :</strong> Le scanner IRM est constitué d’un aimant supraconducteur qui génère un champ magnétique puissant (généralement entre 1,5 et 7 Tesla), ainsi que de bobines de gradient qui créent des variations spatiales du champ.</li>
+            <li><strong>Chimie organique :</strong> Les signaux mesurés proviennent principalement des protons présents dans les molécules d’eau, abondantes dans les tissus biologiques.</li>
+            <li><strong>Traitement du signal :</strong> Une fois les signaux collectés, ils sont transformés en images grâce à des algorithmes complexes reposant notamment sur la Transformée de Fourier.</li>
+            <li><strong>Ingénierie :</strong> L’élaboration des scanners IRM mobilise des compétences en cryogénie, électronique de haute précision, et traitement du signal.</li>
+        </ul>
+
+        <h2>Une révolution scientifique et médicale</h2>
+        <p>Depuis son développement dans les années 1970-80, l’IRM a provoqué une véritable révolution dans la recherche biomédicale et en neurosciences. Elle a permis d’observer le cerveau vivant avec une résolution inégalée, ouvrant la voie à de nouvelles approches pour comprendre l’esprit humain, poser des diagnostics plus précis, et développer des thérapies adaptées.</p>
+
+    </main>
+</div>
+
+<footer>
+    <p>© 2025 Explore la Neuro-imagerie</p>
+</footer>
+
+</body>
+</html>
