@@ -10,12 +10,54 @@
 
     <script type="text/javascript">
         var params = [];
-        params["images"] = ["/data/MRI.nii.gz"];
+        params["images"] = ["/data/samples/mri_human_filpped.nii.gz"];
         params["kioskMode"] = true;
         params["worldSpace"] = false;
-        params["radiological"] = false; 
         params["ignoreNiftiTransforms"] = true;
     </script>
+
+<style>
+    /* Conteneur des options */
+    .subject-selector {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 15px;
+    }
+    
+    /* Style des boutons de sélection */
+    .subject-option {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+        border: 3px solid transparent;
+        transition: transform 0.3s, border-color 0.3s;
+    }
+    
+    .subject-option img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    
+    .subject-option:hover {
+        transform: scale(1.1);
+        border-color: #003366;
+    }
+    
+    .subject-option p {
+        margin-top: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+    }
+    </style>
 
 </head>
 <body>
@@ -39,7 +81,41 @@
         <p>L’imagerie par résonance magnétique (IRM) permet d’obtenir des représentations détaillées du cerveau humain, et plus largement de l’ensemble du corps. Il existe plusieurs types d’images IRM, adaptées à différents objectifs cliniques et de recherche.</p>
 
         <h2>Visualisation d’un fichier IRM réel</h2>
+
+
+
+
         <section class="mri-viewer">
+            <!-- Sélecteur de sujet -->
+            <div class="subject-selector">
+            <div class="subject-option" onclick="changeMRI('humain')">
+                <img src="../../assets/animaux/humain.jpg" alt="Humain">
+            </div>
+            <div class="subject-option" onclick="changeMRI('dauphin')">
+                <img src="../../assets/animaux/dauphin.jpg" alt="Dauphin">
+    
+            </div>
+            <div class="subject-option" onclick="changeMRI('mouse')">
+                <img src="../../assets/animaux/mouse.jpg" alt="mouse">
+            </div>
+            <div class="subject-option" onclick="changeMRI('giraphe')">
+                <img src="../../assets/animaux/giraphe.jpg" alt="giraphe">
+            </div>
+            <div class="subject-option" onclick="changeMRI('giraphe')">
+                <img src="../../assets/animaux/furet.jpg" alt="furet">
+            </div>
+            <div class="subject-option" onclick="changeMRI('chimpanze')">
+                <img src="../../assets/animaux/chimpanse.jpg" alt="chimpanze">
+            </div>
+            <div class="subject-option" onclick="changeMRI('lion')">
+                <img src="../../assets/animaux/lion.jpg" alt="lion">
+            </div>
+            <div class="subject-option" onclick="changeMRI('poisson')">
+                <img src="../../assets/animaux/poisson.jpg" alt="poisson">
+            </div>
+            </div>
+
+             <!-- Papaya Viewer -->
             <div class="papaya" data-params="params"></div>
         </section>
 
@@ -158,6 +234,73 @@
     document.getElementById('next-question').onclick = loadNewQuestion;
     document.addEventListener('DOMContentLoaded', loadNewQuestion);
 </script>
+
+
+    
+<script type="text/javascript">
+    // Définition des paramètres Papaya avec l'IRM HUMAIN par défaut
+    var params = {
+        "kioskMode": true,
+        "worldSpace": false,
+        "radiological": true, 
+        "ignoreNiftiTransforms": true,
+        "ignoreSync": false,
+        "images": ["/data/samples/mri_humain.nii.gz"] // Charge l'IRM humain par défaut
+    };
+
+    // Fonction pour changer l'IRM tout en conservant les paramètres
+    function changeMRI(subject) {        
+        let imagePath = '';
+
+        if (subject === 'humain') {
+            imagePath = "/data/samples/mri_humain.nii.gz";
+        } else if (subject === 'dauphin') {
+            imagePath = "/data/samples/mri_dauphin.nii.gz";
+        } else if (subject === 'mouse') {
+            imagePath = "/data/samples/mri_mouse.nii.gz"; 
+        } else if (subject === 'giraphe') {
+            imagePath = "/data/samples/mri_giraphe.nii.gz"; 
+        } else if (subject === 'furet') {
+            imagePath = "/data/samples/mri_ferret.nii.gz"; 
+        } else if (subject === 'chimpanze') {
+            imagePath = "/data/samples/mri_chimpanze.nii.gz"; 
+        } else if (subject === 'lion') {
+            imagePath = "/data/samples/mri_lion.nii.gz"; 
+        } else if (subject === 'poisson') {
+            imagePath = "/data/samples/mri_poisson.nii.gz"; 
+        }
+
+
+        if (imagePath !== '') {
+            console.log(`Changement d'IRM vers : ${imagePath}`);
+
+            // Copie des paramètres et mise à jour de l'image
+            let updatedParams = { ...params };
+            updatedParams["images"] = [imagePath];
+
+            if (typeof papaya !== 'undefined') {
+                papaya.Container.resetViewer(0, updatedParams); // Mise à jour dynamique
+            } else {
+                console.error("Erreur: Papaya.js n'est pas chargé.");
+            }
+        }
+    }
+
+    // Charger Papaya avec l'IRM humain par défaut au démarrage
+    document.addEventListener('DOMContentLoaded', function () {
+        if (typeof papaya !== 'undefined') {
+            console.log("Chargement initial de Papaya avec l'IRM humain.");
+            papaya.Container.startPapaya();
+        } else {
+            console.error("Erreur: Papaya.js ne s'est pas chargé.");
+        }
+    });
+</script>
+
+
+
+
+
 
 <footer>
     <p>© 2025 Explore la Neuro-imagerie</p>
