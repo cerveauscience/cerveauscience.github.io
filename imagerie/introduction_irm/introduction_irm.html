@@ -10,9 +10,11 @@
 
     <script type="text/javascript">
         var params = [];
-        params["worldSpace"] = true;
         params["images"] = ["/data/MRI.nii.gz"];
-        params["sample_image.nii.gz"] = {"min": 4, "max": 10};
+        params["kioskMode"] = true;
+        params["worldSpace"] = false;
+        params["radiological"] = false; 
+        params["ignoreNiftiTransforms"] = true;
     </script>
 
 </head>
