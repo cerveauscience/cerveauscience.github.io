@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Test Quiz IRM</title>
+    <style>
+        .quiz-image {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border: 3px solid #003366;
+            margin-bottom: 20px;
+        }
+
+        .quiz-choice {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .quiz-choice img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .quiz-choice:hover {
+            border-color: #003366;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Test du Quiz IRM (isolé)</h1>
+
+<section id="irm-quiz" class="quiz-section">
+    <img id="irm-image" src="" alt="IRM d'un animal" class="quiz-image">
+
+    <div class="quiz-choices">
+        <!-- Injecté par JS -->
+    </div>
+
+    <div id="quiz-result"></div>
+    <div id="quiz-description"></div>
+    <button id="next-question">Suivant</button>
+</section>
+
+<script>
+    const animals = ["babouin", "dauphin", "antilope"];
+    const descriptions = {
+        "babouin": "Le babouin vit en Afrique...",
+        "dauphin": "Le dauphin est très intelligent...",
+        "humain": "Ceci est le cerveau humain."
+    };
+
+    function getAssetsPrefix() {
+        return "../../assets/";  // Adapte selon le vrai placement de test-quiz.html
+    }
+
+    let correctAnimal = "";
+
+    function loadNewQuestion() {
+        const prefix = getAssetsPrefix();
+        const irmImage = document.getElementById('irm-image');
+        const choicesContainer = document.querySelector('.quiz-choices');
+        const resultDiv = document.getElementById('quiz-result');
+        const descriptionDiv = document.getElementById('quiz-description');
+        const nextButton = document.getElementById('next-question');
+
+        resultDiv.innerHTML = "";
+        descriptionDiv.innerHTML = "";
+        nextButton.style.display = "none";
+        choicesContainer.innerHTML = "";
+
+        correctAnimal = animals[Math.floor(Math.random() * animals.length)];
+        irmImage.src = `${prefix}irm/${correctAnimal}.jpg`;
+        console.log(`IRM chargée: ${irmImage.src}`);
+
+        const options = new Set([correctAnimal]);
+        while (options.size < 3) {
+            options.add(animals[Math.floor(Math.random() * animals.length)]);
+        }
+
+        options.forEach(animal => {
+            const choice = document.createElement('div');
+            choice.className = "quiz-choice";
+            choice.innerHTML = `<img src="${prefix}animaux/${animal}.jpg" alt="${animal}">`;
+            choice.onclick = () => checkAnswer(animal);
+            choicesContainer.appendChild(choice);
+        });
+    }
+
+    function checkAnswer(selectedAnimal) {
+        const resultDiv = document.getElementById('quiz-result');
+        const descriptionDiv = document.getElementById('quiz-description');
+        const nextButton = document.getElementById('next-question');
+
+        if (selectedAnimal === correctAnimal) {
+            resultDiv.innerText = "✅ Bonne réponse !";
+        } else {
+            resultDiv.innerText = `❌ Mauvaise réponse. C'était ${correctAnimal}.`;
+        }
+
+        descriptionDiv.innerText = descriptions[correctAnimal] || "Pas de description disponible.";
+        nextButton.style.display = "inline-block";
+    }
+
+    document.getElementById('next-question').onclick = loadNewQuestion;
+    document.addEventListener('DOMContentLoaded', loadNewQuestion);
+</script>
+
+</body>
+</html>
