@@ -87,7 +87,11 @@
 
         <section class="mri-viewer">
             <!-- Sélecteur de sujet -->
-            <div class="subject-selector">
+            <h3> 1. Selectionne un animal : </h3>
+            <p> Clique sur les différents êtres vivants pour décourvir une IRM de leur cerveau. 
+            (note : L'image IRM met quelques seconde à se charger.) </p>
+            
+             <div class="subject-selector">
             <div class="subject-option" onclick="changeMRI('humain')">
                 <img src="../../assets/animaux/humain.jpg" alt="Humain">
             </div>
@@ -116,8 +120,30 @@
             </div>
 
              <!-- Papaya Viewer -->
+             <h3> 2. Visualise son cerveau grace à une image IRM : </h3>
+             <p> Une image IRM est un volume. Pour visualiser le volume, on explore les coupes 2D qui le composent dans trois directions différentes.
+                Pour cela, déplace les curseurs bleu en haut ou en bas de l'image.
+             </p>
             <div class="papaya" data-params="params"></div>
+
+             <!-- Text -->
+            <ul> 
+                <li> Source des images IRM : <a href="https://braincatalogue.org/">site de brain catalogue </a>. </li>
+                <li> Visualisation IRM interactive : <a href="https://github.com/rii-mango/Papaya"> Github rii-mango/Papaya</a>.</li>
+            </ul>
+
+            <h3> 3. Explications </h3>
+            <p> Un scanner IRM génère des images du cerveaux par tranches et dans trois directions différentes. 
+            <ul>
+                <li> La coupe axiale : C'est une coupe dans le sens de la visière de ta casquette</li>
+                <li> La coupe sagitale : C'est la coupe dans le sens de l'aileron du requin </li>
+                <li> La coupe coronale : c'est la coupe dans le sens de ton casque audio.</li>
+            </ul>
+        </p>
+
         </section>
+
+        
 
 
         <!--<section id="irm-quiz" class="quiz-section">
