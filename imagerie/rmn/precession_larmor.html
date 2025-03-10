@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Torque en Physique</title>
+    
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/loadNavbar.js" defer></script>
+
+    <!-- MathJax pour l'affichage des formules mathématiques -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+
+</head>
+<body>
+
+<div id="navbar-container"></div>
+
+<div class="container">
+    <aside class="sidebar">
+        <h3>Sommaire RMN</h3>
+        <ul>
+            <li><a href="/imagerie/rmn/spin_nucleaire.html">Le spin nucléaire</a></li>
+            <li><a href="/imagerie/rmn/precession_larmor.html">Précession et fréquence de Larmor</a></li>
+            <li><a href="/imagerie/rmn/aimantation_macroscopique.html">Aimantation macroscopique</a></li>
+            <li><a href="/imagerie/rmn/resonance_magnetique.html">Résonance magnétique nucléaire</a></li>
+            <li><a href="/imagerie/rmn/phase_excitation.html">Phase d'excitation</a></li>
+            <li><a href="/imagerie/rmn/phase_relaxation.html">Phase de relaxation</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <h1>Le Torque en Physique : Explication et Formulation</h1>
+        
+        <p>Le <strong>torque</strong> (ou moment de force) est une grandeur essentielle en physique, particulièrement en électromagnétisme et en mécanique classique. Il décrit l'effet de rotation d'une force appliquée à un système.</p>
+        
+        <h2>Formule du Torque</h2>
+        <p>La relation fondamentale du torque est :</p>
+        <div class="formula-box">
+            \[
+            \boldsymbol{\tau} = \boldsymbol{\mu} \times \boldsymbol{B_0}
+            \]
+        </div>
+        <p>où :</p>
+        <ul>
+            <li><strong>\(\boldsymbol{\tau}\)</strong> est le torque (moment de force),</li>
+            <li><strong>\(\boldsymbol{\mu}\)</strong> est le moment magnétique du dipôle,</li>
+            <li><strong>\(\boldsymbol{B_0}\)</strong> est le champ magnétique appliqué,</li>
+            <li><strong>\(\times\)</strong> représente le produit vectoriel.</li>
+        </ul>
+        
+        <h2>Expression en fonction du rapport gyromagnétique</h2>
+        <p>Le moment magnétique peut être exprimé en fonction du <strong>moment cinétique</strong> \( \boldsymbol{I} \) :</p>
+        <div class="formula-box">
+            \[
+            \boldsymbol{\mu} = \gamma \boldsymbol{I}
+            \]
+        </div>
+        <p>où \( \gamma \) est le <em>rapport gyromagnétique</em>, une constante propre au système étudié.</p>
+        
+        <p>En substituant cette expression dans la formule du torque :</p>
+        <div class="formula-box">
+            \[
+            \boldsymbol{\tau} = \gamma \boldsymbol{I} \times \boldsymbol{B_0}
+            \]
+        </div>
+        <p>Cette relation montre que le champ magnétique applique un moment de force sur une particule ayant un moment cinétique, ce qui entraîne une <strong>précession</strong> du vecteur \( \boldsymbol{I} \) autour de \( \boldsymbol{B_0} \). Ce phénomène est crucial en <strong>résonance magnétique nucléaire (RMN)</strong> et en <strong>physique quantique</strong>.</p>
+        
+        <h2>Conclusion</h2>
+        <p>La formule du torque décrit comment un dipôle magnétique réagit dans un champ magnétique externe. Elle est au cœur de nombreux phénomènes physiques, comme le mouvement des électrons dans un atome ou le fonctionnement des gyroscopes en mécanique classique.</p>
+    
+    </main>
+</div>
+
+<footer>
+    <p>© 2025 Explore la Neuro-imagerie</p>
+</footer>
+
+</body>
+</html>
