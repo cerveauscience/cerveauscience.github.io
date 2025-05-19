@@ -529,8 +529,8 @@ main li {
 /* SIDEBAR - SOMMAIRE FIXE */
 .sidebar {
     position: sticky;
-    top: 80px; /* pour laisser la place à la navbar */
-    width: 250px;
+    top: 80px;
+    width: 300px;  
     background-color: #f1f5f9;
     padding: 20px;
     border-radius: 8px;
@@ -752,4 +752,90 @@ ul li {
         font-size: 1rem;
         padding: 10px;
     }
+}
+
+
+/* ==================== TUTORIELS ==================== */
+
+.tuto-content {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #fdfdfd;
+    color: #333;
+    padding: 40px;
+}
+
+/* Titres dans tuto */
+.tuto-content h1,
+.tuto-content h2,
+.tuto-content h3 {
+    color: #004080;
+}
+
+/* Bloc de code */
+.tuto-content pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-left: 4px solid #004080;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+/* Code inline */
+.tuto-content code {
+    font-family: Consolas, Monaco, monospace;
+    background-color: #f4f4f4;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+/* Séparateur horizontal */
+.tuto-content hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 30px 0;
+}
+
+
+/* ==================== CAROUSEL ==================== */
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-track img {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.carousel-btn.prev {
+    left: 10px;
+}
+
+.carousel-btn.next {
+    right: 10px;
 }

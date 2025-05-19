@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Analyse de connectivité fonctionnelle avec CONN</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/loadNavbar.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="tuto-content">
+    <div id="navbar-container"></div>
+
+    <div class="container">
+        <!-- Sommaire -->
+        <aside class="sidebar">
+            <h3>Sommaire</h3>
+            <ul>
+                <li><a href="#etape1">1. Téléchargement des données</a></li>
+                <li><a href="#etape2">2. Nouveau projet CONN</a></li>
+                <li><a href="#etape3">3. Configuration de base</a></li>
+                <li><a href="#etape4">4. Données structurelles</a></li>
+                <li><a href="#etape5">5. Données fonctionnelles</a></li>
+                <li><a href="#etape6">6. Vérification initiale</a></li>
+                <li><a href="#etape7">7. Pré-traitement</a></li>
+                <li><a href="#etape8">8. Évaluation du pré-traitement</a></li>
+                <li><a href="#etape9">9. Conditions</a></li>
+                <li><a href="#etape10">10. Passage au Denoising</a></li>
+                <li><a href="#etape11">11. Denoising</a></li>
+                <li><a href="#etape12">12. Évaluation du Denoising</a></li>
+                <li><a href="#etape13">13. Ajustements</a></li>
+                <li><a href="#etape14">14. Filtrage passe-bande</a></li>
+                <li><a href="#etape15">15. Analyse premier niveau</a></li>
+                <li><a href="#etape16">16. Paramètres</a></li>
+                <li><a href="#etape17">17. Sélection des seeds</a></li>
+                <li><a href="#etape18">18. Lancer l'analyse</a></li>
+                <li><a href="#etape19">19. Résultats second niveau</a></li>
+                <li><a href="#etape20">20. Visualisation des cartes</a></li>
+            </ul>
+        </aside>
+
+        <!-- Contenu -->
+        <main class="content">
+            <h1>Tutoriel : Analyse de connectivité fonctionnelle en état de repos avec CONN</h1>
+            <p>Ce tutoriel décrit les étapes pour analyser un jeu de données en état de repos à l'aide de la boîte à outils CONN, en partant des données brutes jusqu'à la visualisation des cartes de connectivité fonctionnelle pour les régions du réseau du mode par défaut (DMN).</p>
+
+            <div class="carousel">
+                <div class="carousel-track">
+                    <img src="../tutoriels/images/tuto_conn/Diapositive1.JPG" alt="Slide 1">
+                    <img src="../tutoriels/images/tuto_conn/Diapositive2.JPG" alt="Slide 2">
+                    <img src="../tutoriels/images/tuto_conn/Diapositive3.JPG" alt="Slide 3">
+                    <img src="../tutoriels/images/tuto_conn/Diapositive4.JPG" alt="Slide 4">
+                    <img src="../tutoriels/images/tuto_conn/Diapositive5.JPG" alt="Slide 5">
+                    <img src="../tutoriels/images/tuto_conn/Diapositive6.JPG" alt="Slide 6">
+                    <img src="../tutoriels/images/tuto_conn/Diapositive7.JPG" alt="Slide 7">
+                    <img src="../tutoriels/images/tuto_conn/Diapositive8.JPG" alt="Slide 8">
+                </div>
+                <button class="carousel-btn prev">❮</button>
+                <button class="carousel-btn next">❯</button>
+            </div>
+
+            <div>
+                <!-- Texte complet inséré automatiquement ici -->
+                <div>
+                <h2 id="etape1">Étape 1 : Téléchargement des données</h2>
+                <ul>
+                    <li>Commencez par chercher le jeu de données NYU Test-retest sur internet. Il fait partie du projet 1000 Functional Connectomes et est disponible publiquement.</li>
+                    <li>Accédez au site d'accès aux données (par exemple, le site XNAT) et trouvez les fichiers disponibles.</li>
+                    <li>Téléchargez les fichiers : "nyu_trt_session1A.zip" et "nyu_trt_session1B.zip".</li>
+                    <li>Décompressez les fichiers pour obtenir les données anatomiques et fonctionnelles pour chaque sujet.</li>
+                </ul>
+
+                <h2 id="etape2">Étape 2 : Démarrage de CONN et création d'un nouveau projet</h2>
+                <ul>
+                    <li>Assurez-vous que CONN et SPM sont installés.</li>
+                    <li>Démarrez Matlab et lancez CONN.</li>
+                    <li>Cliquez sur "New" pour créer un nouveau projet.</li>
+                    <li>Choisissez un emplacement et un nom de projet (ex. : CONN_guide).</li>
+                </ul>
+
+                <h2 id="etape3">Étape 3 : Configuration de base du projet</h2>
+                <ul>
+                    <li>Allez dans l'onglet "Setup".</li>
+                    <li>Définissez : acquisition continue, TR = 2s, 1 session, 25 sujets.</li>
+                </ul>
+
+                <h2 id="etape4">Étape 4 : Importation des données structurelles</h2>
+                <ul>
+                    <li>Onglet "Setup" > section "Structural".</li>
+                    <li>Utilisez la recherche récursive pour trouver "anat_anonymized.nii.gz".</li>
+                    <li>Sélectionnez les 25 fichiers et sujets. Cliquez sur "select".</li>
+                </ul>
+
+                <h2 id="etape5">Étape 5 : Importation des données fonctionnelles</h2>
+                <ul>
+                    <li>Onglet "Setup" > section "Functional".</li>
+                    <li>Recherchez "lfo.nii.gz", sélectionnez les 25 fichiers et sujets. Cliquez sur "select".</li>
+                </ul>
+
+                <h2 id="etape6">Étape 6 : Vérification initiale</h2>
+                <ul>
+                    <li>Utilisez "functional tools" > "display single slice for all subjects" pour voir si normalisation nécessaire.</li>
+                </ul>
+
+                <h2 id="etape7">Étape 7 : Pré-traitement</h2>
+                <p>
+                    Le pré-traitement comprend généralement plusieurs étapes pour préparer les données, comme la mise en espace MNI, 
+                    le co-enregistrement inter-sujets, la correction des mouvements, la correction des temps d'acquisition des coupes (slice timing), 
+                    l'identification des artefacts (outliers), la normalisation et le lissage spatial. Le lissage spatial (typiquement 8mm) aide à augmenter 
+                    le rapport signal sur bruit et la robustesse à la variabilité anatomique. 
+                    La segmentation divise les données en classes tissulaires (matière grise, matière blanche, LCR)
+                </p>
+                <p>Choisissez "default preprocessing pipeline for volume-based analysis". Paramètres :</p>
+                <ul>
+                    <li>Ordre des coupes : interleaved (Siemens)</li>
+                    <li>Seuils outliers : conservative</li>
+                    <li>Résolution : 2mm, Lissage : 8mm</li>
+                </ul>
+
+                <h2 id="etape8">Étape 8 : Évaluation du pré-traitement</h2>
+                <p>Utilisez les visualiseurs pour valider l’alignement MNI, ROIs et covariables générées automatiquement (realignment, scrubbing, etc.).</p>
+
+                <h2 id="etape9">Étape 9 : Conditions expérimentales</h2>
+                <p>Dans les jeux de données de repos, la condition "rest" couvre toute la session.</p>
+
+                <h2 id="etape10">Étape 10 : Passage au Denoising</h2>
+                <p>Onglet "Denoising" > cliquez sur "start".</p>
+
+                <h2 id="etape11">Étape 11 : Denoising</h2>
+                <p>Utilise Anatomical CompCor pour retirer le bruit lié à la matière blanche, LCR, mouvements et outliers.</p>
+
+                <h2 id="etape12">Étape 12 : Évaluation du Denoising</h2>
+                <p>Regardez les distributions de corrélations voxel à voxel et les carpet plots avant/après. Ils doivent se centrer autour de 0.</p>
+
+                <h2 id="etape13">Étape 13 : Ajustements</h2>
+                <p>Augmentez les composantes CompCor si besoin (ex : 10).</p>
+
+                <h2 id="etape14">Étape 14 : Filtrage passe-bande</h2>
+                <p>Utilisez 0.01 Hz à l’infini (0.01 to inf) pour un filtre passe-haut.</p>
+
+                <h2 id="etape15">Étape 15 : Analyse de premier niveau</h2>
+                <p>Onglet "First-level analysis" > type : correlation (bivariate), basé sur des seeds.</p>
+
+                <h2 id="etape16">Étape 16 : Paramètres de premier niveau</h2>
+                <p>Configurer le type de mesure et les seeds.</p>
+
+                <h2 id="etape17">Étape 17 : Sélection des Seeds</h2>
+                <p>Sélectionnez ceux du DMN (ex. PCC, MPFC), visualisez leur signal et masque.</p>
+
+                <h2 id="etape18">Étape 18 : Lancer l’analyse</h2>
+                <p>Onglet "First-level analysis" > cliquez sur "start".</p>
+
+                <h2 id="etape19">Étape 19 : Résultats de second niveau</h2>
+                <p>Onglet "Second-level results" > sélection de sujets, seeds, condition.</p>
+
+                <h2 id="etape20">Étape 20 : Visualisation des cartes</h2>
+                <p>Utilisez "results explorer" pour afficher les cartes de corrélation moyennes. Choisissez "slice display" ou "surface display".</p>
+            </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Explore la Neuro-imagerie - Tous droits réservés</p>
+    </footer>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+    let currentSlide = 0;
+
+    function updateCarousel() {
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    }
+
+    prevBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        updateCarousel();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        updateCarousel();
+    });
+
+    window.addEventListener('resize', updateCarousel);
+    updateCarousel(); // Position initiale
+});
+</script>
+
+
+</body>
+</html>

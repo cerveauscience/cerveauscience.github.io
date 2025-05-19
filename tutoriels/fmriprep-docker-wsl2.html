@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Utilisation de fMRIPrep avec Docker et WSL2</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/loadNavbar.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="tuto-content">
+    <div id="navbar-container"></div>
+
+    <div class="container">
+        <!-- Sommaire latéral -->
+        <aside class="sidebar">
+            <h3>Sommaire</h3>
+            <ul>
+                <li><a href="#objectif">Objectif</a></li>
+                <li><a href="#prerequis">1. Prérequis</a></li>
+                <li><a href="#path">2. Ajouter au PATH</a></li>
+                <li><a href="#wslconfig">3. Configuration WSL2</a></li>
+                <li><a href="#copie">4. Copie des données</a></li>
+                <li><a href="#commande">5. Commande fMRIPrep</a></li>
+                <li><a href="#erreurs">6. Problèmes rencontrés</a></li>
+                <li><a href="#remarques">7. Remarques</a></li>
+                <li><a href="#annexes">8. Annexes</a></li>
+            </ul>
+        </aside>
+
+        <!-- Contenu principal -->
+        <main class="content">
+            <h1 id="objectif">Utilisation de fMRIPrep avec Docker et WSL2 sur Windows</h1>
+
+            <h2>Objectif</h2>
+            <p>Ce tutoriel décrit pas à pas l’installation et l’utilisation de <strong>fMRIPrep</strong> avec Docker sous Windows, via le sous-système Linux <strong>WSL2</strong>. Il est basé sur un dataset téléchargé depuis OpenNeuro, et aborde également les erreurs courantes et leurs solutions.</p>
+
+            <hr />
+
+            <h2 id="prerequis">1. Prérequis</h2>
+            <ul>
+                <li>Windows 10 ou 11 avec <strong>WSL2</strong> installé</li>
+                <li><strong>Docker Desktop</strong> installé et configuré avec WSL2</li>
+                <li>Distribution Linux (ex. : Ubuntu-22.04)</li>
+                <li>Python installé</li>
+                <li>fMRIPrep installé avec :</li>
+            </ul>
+            <pre><code>python -m pip install --user fmriprep-docker</code></pre>
+            <p>Et un dataset BIDS copié localement, par exemple : <code>E:\tuto_SPM\ds004302</code></p>
+
+            <hr />
+
+            <h2 id="path">2. Ajouter fmriprep-docker au PATH</h2>
+            <p>Ajoutez ce dossier au <code>PATH</code> utilisateur :</p>
+            <pre><code>C:\Users\&lt;NomUtilisateur&gt;\AppData\Roaming\Python\Python311\Scripts</code></pre>
+
+            <p><strong>Étapes :</strong></p>
+            <ol>
+                <li>Ouvrir "Variables d’environnement" dans le menu Démarrer</li>
+                <li>Modifier la variable <code>Path</code> de l’utilisateur</li>
+                <li>Ajouter le chemin ci-dessus</li>
+                <li>Redémarrer le terminal</li>
+            </ol>
+
+            <hr />
+
+            <h2 id="wslconfig">3. Configuration WSL2</h2>
+            <p>Pour allouer plus de ressources à WSL2, créez un fichier <code>.wslconfig</code> dans <code>C:\Users\&lt;NomUtilisateur&gt;</code> :</p>
+            <pre><code>[wsl2]
+memory=8GB
+processors=4
+swap=2GB</code></pre>
+            <p>Puis exécutez dans PowerShell :</p>
+            <pre><code>wsl --shutdown</code></pre>
+            <p>Relancez Docker Desktop ensuite.</p>
+
+            <hr />
+
+            <h2 id="copie">4. Copie des données dans WSL</h2>
+            <p>Dans Ubuntu (WSL), créez un dossier et copiez vos données :</p>
+            <pre><code>mkdir -p ~/data/fmriprep
+cp -r /mnt/e/tuto_SPM/ds004302 ~/data/fmriprep/
+cp -r /mnt/e/tuto_SPM/freesurfer ~/data/fmriprep/
+cp -r /mnt/e/tuto_SPM/fmriprep_output ~/data/fmriprep/</code></pre>
+
+            <hr />
+
+            <h2 id="commande">5. Commande fMRIPrep</h2>
+            <p>À lancer dans PowerShell (en version UNC Windows) :</p>
+<pre><code>fmriprep-docker \\wsl.localhost\Ubuntu-22.04\home\maxidieu\data\fmriprep\ds004302 \
+                 \\wsl.localhost\Ubuntu-22.04\home\maxidieu\data\fmriprep\fmriprep_output \
+                 participant \
+                 --fs-license-file \\wsl.localhost\Ubuntu-22.04\home\maxidieu\data\fmriprep\freesurfer\license.txt \
+                 --fs-subjects-dir \\wsl.localhost\Ubuntu-22.04\home\maxidieu\data\fmriprep\freesurfer \
+                 --participant-label 01</code></pre>
+
+            <hr />
+
+            <h2 id="erreurs">6. Problèmes rencontrés et solutions</h2>
+
+            <h3>Erreur 1 : <code>&lt;8GB RAM available</code></h3>
+            <p><strong>Solution :</strong> Vérifiez votre fichier <code>.wslconfig</code>.</p>
+
+            <h3>Erreur 2 : <code>dataset_description.json missing</code></h3>
+            <pre><code>cp /mnt/e/tuto_SPM/ds004302/dataset_description.json ~/data/fmriprep/ds004302/</code></pre>
+
+            <h3>Erreur 3 : <code>RepetitionTime must be defined</code></h3>
+            <p>Copier le fichier <code>task-speech_bold.json</code> :</p>
+            <pre><code>cp /mnt/e/tuto_SPM/ds004302/task-speech_bold.json ~/data/fmriprep/ds004302/</code></pre>
+            <pre><code>{
+  "RepetitionTime": 2
+}</code></pre>
+
+            <h3>Erreur 4 : <code>ln: failed to create symbolic link</code></h3>
+            <p><strong>Cause :</strong> les volumes montés depuis Windows ne permettent pas les symlinks nécessaires à FreeSurfer.</p>
+            <p><strong>Solution :</strong> Tout stocker directement dans WSL (pas dans <code>/mnt/</code>).</p>
+
+            <hr />
+
+            <h2 id="remarques">7. Remarques</h2>
+            <ul>
+                <li>Les chemins WSL doivent commencer par <code>\\wsl.localhost\...</code></li>
+                <li>Assurez-vous que Docker Desktop est bien lancé</li>
+                <li>Validez votre dataset BIDS avant exécution</li>
+            </ul>
+
+            <hr />
+
+            <h2 id="annexes">8. Annexes</h2>
+
+            <h3>Exemple de <code>task-speech_bold.json</code></h3>
+            <pre><code>{
+  "TaskName": "speech",
+  "RepetitionTime": 2.0,
+  "Manufacturer": "Philips"
+}</code></pre>
+
+            <p><strong>Document rédigé le 17 mai 2025</strong></p>
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Explore la Neuro-imagerie - Tous droits réservés</p>
+    </footer>
+</body>
+</html>
